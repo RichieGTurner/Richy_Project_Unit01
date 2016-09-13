@@ -262,7 +262,7 @@ var deck = [
 ];
 
 function shuffle(deck) {
-  var deck = deck.slice(0);
+  deck = deck.slice(0);
   var shuffledDeck = [];
   for(var i = 0; i < 52; i++) {
     var randomIndex = getRandomArbitrary(0, deck.length - 1);
