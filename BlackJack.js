@@ -278,3 +278,9 @@ function getRandomArbitrary(min, max) {
 
 var shuffledDeck = shuffle(deck);
 console.log(shuffledDeck);
+
+// Deal cards
+
+// Calculate players card values
+
+// Deal with players turn
