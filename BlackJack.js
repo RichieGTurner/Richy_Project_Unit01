@@ -1,4 +1,4 @@
-var cards = [
+var deck = [
   {
     value: '2',
     type: 'clubs',
@@ -261,4 +261,20 @@ var cards = [
   }
 ];
 
-console.log(cards.length);
+function shuffle(deck) {
+  var deck = deck.slice(0);
+  var shuffledDeck = [];
+  for(var i = 0; i < 52; i++) {
+    var randomIndex = getRandomArbitrary(0, deck.length - 1);
+    shuffledDeck.push(deck[randomIndex]);
+    deck.splice(randomIndex, 1);
+  }
+  return shuffledDeck;
+}
+
+function getRandomArbitrary(min, max) {
+  return Math.round(Math.random() * (max - min) + min);
+}
+
+var shuffledDeck = shuffle(deck);
+console.log(shuffledDeck);
