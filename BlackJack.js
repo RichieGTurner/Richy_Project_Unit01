@@ -1,3 +1,5 @@
+console.log("hihi");
+
 var deck = [
   {
     value: '2',
@@ -260,27 +262,28 @@ var deck = [
     gameValue: [1, 11]
   }
 ];
+//shuffle function taken from stack overflow
 
-function shuffle(deck) {
-  deck = deck.slice(0);
-  var shuffledDeck = [];
-  for(var i = 0; i <    0; i++) {
-    var randomIndex = getRandomArbitrary(0, deck.length - 1);
-    shuffledDeck.push(deck[randomIndex]);
-    deck.splice(randomIndex, 1);
-  }
-  return shuffledDeck;
-}
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        x = a[i - 1];
+        a[i - 1] = a[j];
+        a[j] = x;
+    }
+};
 
-function getRandomArbitrary(min, max) {
-  return Math.round(Math.random() * (max - min) + min);
-}
+shuffle(deck);
+console.log(deck);
 
-var shuffledDeck = shuffle(deck);
-console.log(shuffledDeck);
+console.log(deck[0]);
 
-// Deal cards
+
+//console log grab a random card
 //setup player card and dealer card array
+// Deal cards
+
 //loop over shuffledDeck 4 times, send first and third card to player, 2nd and fourth to dealer
 // Calculate players card values
 
