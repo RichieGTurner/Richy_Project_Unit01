@@ -278,13 +278,13 @@ shuffle(deck);
 console.log(deck);
 
 console.log(deck[0]);
-
+//remove top card from array
 
 //console log grab a random card
 //setup player card and dealer card array
 // Deal cards
 
-//loop over shuffledDeck 4 times, send first and third card to player, 2nd and fourth to dealer
+
 // Calculate players card values
 
 // Deal with players turn
