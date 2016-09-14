@@ -264,7 +264,7 @@ var deck = [
 function shuffle(deck) {
   deck = deck.slice(0);
   var shuffledDeck = [];
-  for(var i = 0; i < 52; i++) {
+  for(var i = 0; i <    0; i++) {
     var randomIndex = getRandomArbitrary(0, deck.length - 1);
     shuffledDeck.push(deck[randomIndex]);
     deck.splice(randomIndex, 1);
@@ -280,7 +280,8 @@ var shuffledDeck = shuffle(deck);
 console.log(shuffledDeck);
 
 // Deal cards
-
+//setup player card and dealer card array
+//loop over shuffledDeck 4 times, send first and third card to player, 2nd and fourth to dealer
 // Calculate players card values
 
 // Deal with players turn
