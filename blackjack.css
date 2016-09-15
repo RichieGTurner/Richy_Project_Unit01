@@ -1,3 +1,6 @@
+/** {
+  border: 2px solid red;
+}*/
 h1 {
   background: yellow;
   width: 150px;
@@ -6,6 +9,9 @@ h1 {
   margin-right: auto;
   border:1px solid #056B42;
   border-radius:3px;
+}
+#controldiv {
+  text-align: center;
 }
 #dealer {
   overflow:hidden;
@@ -38,12 +44,4 @@ h1 {
   font-size:1.1em;
   height:6em;
   width:25em;
-}
-button {
-  /*position: center;*/
-  /*margin-left:  0 auto;
-  margin-right: 0 auto;*/
-  margin: 0 auto;
-  /*text-align: center;*/
-
 }
