@@ -278,7 +278,9 @@ shuffle(deck);
 console.log(deck);
 
 console.log(deck[0]);
+
 //remove top card from array
+//look into splicing and slicing
 
 //console log grab a random card
 //setup player card and dealer card array
@@ -288,3 +290,7 @@ console.log(deck[0]);
 // Calculate players card values
 
 // Deal with players turn
+
+
+
+// preparation for interview
