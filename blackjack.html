@@ -8,12 +8,18 @@
   <body>
 
     <h1>BlackJack</h1>
-    <div id="dealer">Dealer</div>
-    <div id="yourHand">Your Hand</div>
+    <div id="dealer">
+      <p>Dealer</p>
+      <div id="dealer-hand"></div>
+    </div>
+    <div id="yourHand">
+      <p>Your Hand</p>
+      <div id="player-hand"></div>
+    </div>
     <div id="controldiv">
       <button id="deal">Deal</button>
-      <button id="hitMe">Hit</button>
-      <button id="stand">Stand</button>
+      <button disabled id="hitMe">Hit</button>
+      <button disabled id="stand">Stand</button>
     </div>
   </body>
   <script src="BlackJack.js"></script>

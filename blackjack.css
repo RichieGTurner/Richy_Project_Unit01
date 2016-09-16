@@ -11,7 +11,7 @@ h1 {
 #controldiv {
   text-align: center;
 }
-#dealer {
+#dealer, #yourHand {
   overflow:hidden;
   /*position:center;*/
   margin-left: auto;
@@ -24,22 +24,21 @@ h1 {
   color:#69D1A7;
   padding:.5em;
   font-size:1.1em;
-  height:6em;
+  height:140px;
   width:25em;
 }
-#yourHand {
-  overflow:hidden;
-  /*position:center;*/
-  margin-left: auto;
-  margin-right: auto;
-  border:1px solid #056B42;
-  border-radius:3px;
-  -moz-border-radius:3px;
-  -webkit-border-radius:3px;
-  background: #287B59;
-  color:#69D1A7;
-  padding:.5em;
-  font-size:1.1em;
-  height:6em;
-  width:25em;
+
+.card-back {
+  width: 85px;
+  height: 110px;
+  background: black;
+  display: inline-block;
+}
+
+#yourHand p {
+  margin: 0;
+}
+
+#dealer p {
+  margin: 0;
 }

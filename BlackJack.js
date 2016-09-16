@@ -8,12 +8,16 @@ var player = {
   hand: [],
   currentPoints: 0,
   bankRoll: 1000,
-  currentBet: 0
+  currentBet: 0,
+  cardContainer: 'player-hand',
+  type: 'player'
 };
 
 var dealer = {
   hand: [],
-  currentPoints: 0
+  currentPoints: 0,
+  cardContainer: 'dealer-hand',
+  type: 'dealer'
 };
 
 var deck = [
@@ -356,6 +360,12 @@ function deal() {
   player.hand.push(deck[2]);
   dealer.hand.push(deck[1]);
   dealer.hand.push(deck[3]);
+  // Enabled hit and stand buttons
+  document.getElementById(buttons.hit).removeAttribute('disabled');
+  document.getElementById(buttons.stand).removeAttribute('disabled');
+  // Display cards in UI
+  renderCards(dealer, true);
+  renderCards(player, true);
   // Calculate dealer and player hands
   player.currentPoints = calcPointsForHand(player.hand);
   dealer.currentPoints = calcPointsForHand(dealer.hand);
@@ -376,6 +386,8 @@ function hit(opponent) {
   opponent.hand.push(deck[cardIndex]);
   cardIndex++;
   opponent.currentPoints = calcPointsForHand(opponent.hand);
+  // Render new set of cards
+  renderCards(opponent, false);
   // If opponents currentPoints is greater than 21 call gameOver function
   if (opponent.currentPoints > 21) {
     gameOver();
@@ -396,6 +408,19 @@ function stand() {
 // Dealers turn function
 function dealersTurn() {
 
+}
+
+// Render cards to UI for an opponent
+function renderCards(opponent, initialDeal) {
+  var html = '';
+  opponent.hand.forEach(function(card, index) {
+    if (opponent.type === 'dealer' && index === 0 && initialDeal) {
+      html += '<div class="card-back"></div>';
+    } else {
+      html += '<img src="' + card.imgPath + '" />';
+    }
+  });
+  document.getElementById(opponent.cardContainer).innerHTML = html;
 }
 
 // Attach event handlers
