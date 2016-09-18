@@ -1,7 +1,8 @@
 var buttons = {
   deal: 'deal',
   hit: 'hitMe',
-  stand: 'stand'
+  stand: 'stand',
+  bet100: 'bet-100'
 };
 
 var player = {
@@ -335,6 +336,9 @@ var deck = [
   }
 ];
 
+// Render current bankRoll
+document.getElementById('bankroll').innerHTML = player.bankRoll;
+
 var cardIndex = 0;
 
 //shuffle function taken from stack overflow
@@ -355,6 +359,8 @@ function deal() {
   cardIndex = 4;
   dealer.hand = [];
   player.hand = [];
+  // Reset Game status text
+  document.getElementById('game-status-text').innerHTML = '';
   // Insert cards into dealer and players hand array
   player.hand.push(deck[0]);
   player.hand.push(deck[2]);
@@ -369,8 +375,6 @@ function deal() {
   // Calculate dealer and player hands
   player.currentPoints = calcPointsForHand(player.hand);
   dealer.currentPoints = calcPointsForHand(dealer.hand);
-  // Prompt user to hit or stay
-  console.log(player, dealer);
 }
 
 function calcPointsForHand(hand) {
@@ -390,24 +394,57 @@ function hit(opponent) {
   renderCards(opponent, false);
   // If opponents currentPoints is greater than 21 call gameOver function
   if (opponent.currentPoints > 21) {
-    gameOver();
+    busted(opponent);
   }
-  console.log(opponent.currentPoints);
 }
 
 // Game over function
-function gameOver() {
-  console.log('you lost dawg!');
+function busted(opponent) {
+  // Make hit and stand buttons disabled
+  document.getElementById(buttons.hit).setAttribute('disabled', 'disabled');
+  document.getElementById(buttons.stand).setAttribute('disabled', 'disabled');
+  if (opponent.type === 'player') {
+    youLost();
+  }
+  if (opponent.type === 'dealer') {
+    youWin();
+  }
 }
 
 // Stand function
 function stand() {
-
+  // Make hit and stand buttons disabled
+  document.getElementById(buttons.hit).setAttribute('disabled', 'disabled');
+  document.getElementById(buttons.stand).setAttribute('disabled', 'disabled');
+  dealersTurn();
 }
 
 // Dealers turn function
 function dealersTurn() {
+  // Reveal first card by renderingCards
+  renderCards(dealer, false);
+  while(dealer.currentPoints <= player.currentPoints) {
+    hit(dealer);
+  }
+  if (dealer.currentPoints > player.currentPoints && dealer.currentPoints < 22) {
+    youLost();
+  }
+}
 
+function youLost() {
+  document.getElementById('game-status-text').innerHTML = 'You Lost!';
+  // Set current bet to 0 and reset UI
+  player.currentBet = 0;
+  document.getElementById('current-bet').innerHTML = '0';
+}
+
+function youWin() {
+  document.getElementById('game-status-text').innerHTML = 'You Win!';
+  // Reset current bet but give player double bet towards bankRoll
+  player.bankRoll = player.bankRoll + (player.currentBet * 2);
+  document.getElementById('bankroll').innerHTML = player.bankRoll;
+  player.currentBet = 0;
+  document.getElementById('current-bet').innerHTML = '0';
 }
 
 // Render cards to UI for an opponent
@@ -423,6 +460,17 @@ function renderCards(opponent, initialDeal) {
   document.getElementById(opponent.cardContainer).innerHTML = html;
 }
 
+function bet(value) {
+  if (value <= player.bankRoll) {
+    player.bankRoll = player.bankRoll - value;
+    player.currentBet = player.currentBet + value;
+    console.log(player);
+    // Render bankroll and current bet
+    document.getElementById('bankroll').innerHTML = player.bankRoll;
+    document.getElementById('current-bet').innerHTML = player.currentBet;
+  }
+}
+
 // Attach event handlers
 document.getElementById(buttons.deal).addEventListener('click', function() {
   deal();
@@ -432,18 +480,10 @@ document.getElementById(buttons.hit).addEventListener('click', function() {
   hit(player);
 });
 
-//remove top card from array
-//look into splicing and slicing
+document.getElementById(buttons.stand).addEventListener('click', function() {
+  stand();
+});
 
-//console log grab a random card
-//setup player card and dealer card array
-// Deal cards
-
-
-// Calculate players card values
-
-// Deal with players turn
-
-
-
-// preparation for interview
+document.getElementById(buttons.bet100).addEventListener('click', function() {
+  bet(100);
+});
