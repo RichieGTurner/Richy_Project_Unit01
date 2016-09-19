@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="blackjack.css">
+    <meta charset="utf-8">
+    <title>blackjack</title>
+  </head>
+  <body>
+
+    <h1>BlackJack</h1>
+    <p id="game-status-text"></p>
+    <div id="dealer">
+      <p>Dealer</p>
+      <div id="dealer-hand"></div>
+    </div>
+    <div id="yourHand">
+      <p>Your Hand</p>
+      <div id="player-hand"></div>
+    </div>
+    <div id="controldiv">
+      <button id="deal">Deal</button>
+      <button disabled id="hitMe">Hit</button>
+      <button disabled id="stand">Stand</button>
+    </div>
+    <label>Current Bank Roll:</label>
+    <span id="bankroll"></span>
+    <label>Current Bet:</label>
+    <span id="current-bet">0</span>
+    <div id="gamble">
+      <button id="bet-100">Bet 100</button>
+      <button id="DD">Double Down</button>
+    </div>
+  </body>
+  <script src="BlackJack.js"></script>
+</html>
